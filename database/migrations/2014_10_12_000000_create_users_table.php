@@ -27,6 +27,7 @@ class CreateUsersTable extends Migration
             $table->char('receive_sms',1)->comment('문자수신여부');
             $table->char('receive_email',1)->comment('이메일수신여부');
             $table->timestamps();
+            $table->string('user_id')->nullable();
         });
     }
 
