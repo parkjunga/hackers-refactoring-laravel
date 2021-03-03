@@ -164,7 +164,7 @@
                      <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">로그아웃</a>
 
-                    <a href="#">{{ Auth::user()->name }} 정보</a>
+                    <a href="{{ route('userInfo',Auth::user()->id) }}">{{ Auth::user()->name }} 정보</a>
                     <a href="#">상담/고객센터</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf

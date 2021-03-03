@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\member;
 
 use App\Http\Controllers\Controller;
+use App\Models\tb_category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -102,7 +103,7 @@ class MemberController extends Controller
                 'name' => $data['name'],
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
-                'address' => $request->basicAddress,
+                'addr' => $request->basicAddress,
                 'detail_addr' => $request->detailAddress,
                 'post' => $request->postAddress,
                 'phone' => $data['phone'],
@@ -148,9 +149,70 @@ class MemberController extends Controller
         return redirect('/');
     }
 
-    public function userInfo(Request $request)
+    public function userInfo(Request $request,$id)
     {
-        return view('member.userInfo');
+        // 데이터 활용을 위해
+        $Auth = json_encode(Auth::user(), JSON_UNESCAPED_UNICODE);
+        $Auth = json_decode($Auth,true);
+        $email = explode('@',$Auth['email']);
+        return view('member.userInfo',['user'=>$Auth, 'email'=>$email]);
     }
 
+    public function modify(Request $request, User $user,$id)
+    {
+
+        if (Hash::check($request->post('password'),Auth::user()->getAuthPassword())){
+
+            // validate
+            if (Auth::user()->email != $request->post('email')){
+                $data = $request->validate([
+                    'email' => 'required|email|max:255|unique:users',
+                ]);
+            } else {
+                $data['email'] = $request->post('email');
+            }
+
+            DB::table('users')
+                ->where('id',$id)
+                ->update(['email' => $data['email'],
+                          'addr' => $request->post('basicAddress'),
+                          'detail_addr' => $request->post('detailAddress'),
+                          'post' => $request->post('postAddress'),
+                          'receive_email'=> $request->post('receive_email'),
+                         'receive_sms' =>$request->post('receive_sms')]);
+
+            return redirect('/');
+        } else{
+            return abort(401);
+        }
+
+    }
+
+    public function find()
+    {
+        return view('member.find');
+    }
+
+    public function findEnd(Request $request)
+    {
+        $userId = $request->session()->get('userId');
+        $name = $request->session()->get('name');
+        return view('member.findEnd',['userId' => $userId, 'name' => $name ] );
+    }
+
+    public function findConfirm(Request $request)
+    {
+        if ($request->post('code') == $request->session()->get('code') ){
+            // 인증키 제거
+            $request->session()->forget('code');
+            $user = DB::select('select userId,name from users where email = ? AND name=?',
+                [$request->input('email'),$request->input('name')]);
+            session(['userId' => $user[0]->userId]);
+            session(['name' => $user[0]->name]);
+
+            return response()->json(['status' => 200, 'redirect' => 'findEnd']);
+        } else{
+            return response()->json(['status' => 500, 'msg' => '인증키가 다릅니다.']);
+        }
+    }
 }

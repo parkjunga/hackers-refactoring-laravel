@@ -20,13 +20,13 @@
             </div>
 
             <div class="guide-box">
-                <p class="fs16 mb5">이진아 회원님의 아이디는 아래와 같습니다.</p>
-                <strong class="big-title tc-brand">rreamon7</strong>
+                <p class="fs16 mb5">{{ $name }} 회원님의 아이디는 아래와 같습니다.</p>
+                <strong class="big-title tc-brand">{{ $userId }}</strong>
             </div>
 
             <div class="box-btn mt30">
-                <a href="#" class="btn-l">로그인하러 가기</a>
-                <a href="#" class="btn-l-line ml5">비밀번호 찾기</a>
+                <a href="{{ route('login') }}" class="btn-l">로그인하러 가기</a>
+                <a href="{{ route('find') }}" class="btn-l-line ml5">비밀번호 찾기</a>
             </div>
 
         </div>

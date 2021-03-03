@@ -155,14 +155,26 @@
 		<div class="top-section">
 			<div class="inner">
 				<div class="link-box">
-					<!-- 로그인전 -->
-					<a href="#">로그인</a>
-					<a href="#">회원가입</a>
-					<a href="#">상담/고객센터</a>
-					<!-- 로그인후 -->
-					<!-- <a href="#">로그아웃</a>
-					<a href="#">내정보</a>
-					<a href="#">상담/고객센터</a> -->
+                @guest
+                    @if (Route::has('login'))
+                        <!-- 로그인전 -->
+                            <a href="{{ route('login') }}">로그인</a>
+                            <a href="{{ route('step01') }}">회원가입</a>
+                            <a href="#">상담/고객센터</a>
+                    @endif
+                @else
+                    <!-- 로그인후 -->
+                        <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">로그아웃</a>
+
+                        <a href="{{ route('userInfo',Auth::user()->id) }}">{{ Auth::user()->name }} 정보</a>
+                        <a href="#">상담/고객센터</a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+
+                </div>
+                @endguest
 				</div>
 			</div>
 		</div>

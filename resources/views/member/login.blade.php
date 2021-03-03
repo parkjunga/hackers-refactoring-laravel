@@ -25,8 +25,8 @@
             </div>
 
             <div class="box-btn">
-                <a href="#" class="btn-m-gray">회원가입</a>
-                <a href="#" class="btn-m-gray">ID/PW 찾기</a>
+                <a href="{{ route('step01') }}" class="btn-m-gray">회원가입</a>
+                <a href="{{ route('find') }}" class="btn-m-gray">ID/PW 찾기</a>
             </div>
             </form>
         </div>

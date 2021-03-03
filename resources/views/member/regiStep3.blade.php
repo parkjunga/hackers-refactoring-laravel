@@ -84,13 +84,6 @@
                         @endif
                     </tr>
                     <tr>
-                        <th scope="col"><span class="icons"></span>일반전화 번호</th>
-                        <td>
-                            <input name="telephone[]" type="text" class="input-text" style="width:88px"/> -
-                            <input name="telephone[]" type="text" class="input-text" style="width:88px"/> -
-                            <input name="telephone[]" type="text" class="input-text" style="width:88px"/></td>
-                    </tr>
-                    <tr>
                         <th scope="col"><span class="icons">*</span>주소</th>
                         <td>
                             <p >
