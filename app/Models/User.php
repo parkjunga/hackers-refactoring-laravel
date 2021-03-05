@@ -28,6 +28,7 @@ class User extends Authenticatable
         'receive_email',
         'receive_sms',
         'userId',
+        'level', # 0 은 관리자 1은 유저
     ];
 
     /**

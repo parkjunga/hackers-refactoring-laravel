@@ -156,7 +156,7 @@
                     @if (Route::has('login'))
                     <!-- 로그인전 -->
                     <a href="{{ route('login') }}">로그인</a>
-                    <a href="#">회원가입</a>
+                    <a href="{{ route('step01') }}">회원가입</a>
                     <a href="#">상담/고객센터</a>
                     @endif
                 @else
@@ -525,7 +525,11 @@
     </div>
 
     <script type="text/javascript">
+        @if (session('status'))
+        alert('강의 등록은 관리자만 가능합니다.');
+        @endif
         $(document).ready(function(){
+
             //main_slider_applyclass
             var bnrWrap = $('.slider-applyclass')
             var bnr_slider = bnrWrap.find('.bxslider');

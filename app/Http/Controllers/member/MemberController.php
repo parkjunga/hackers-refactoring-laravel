@@ -23,7 +23,7 @@ class MemberController extends Controller
         if ($request->input('check1') == 'on' and $request->input('check2') == 'on') {
             // 약관동의 여부 저장
             session(['agree' => 'Y']);
-            return redirect('member.step02');
+            return redirect('member/step02');
         } else {
             return back()->with('msg', '약관 동의는 반드시 필요합니다.');
         }

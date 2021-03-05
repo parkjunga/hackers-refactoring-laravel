@@ -23,6 +23,7 @@
 <link type="text/css" rel="stylesheet" href="http://q.hackershrd.com/worksheet/css/main.css" /><!-- main페이지에만 호출 -->
 <link type="text/css" rel="stylesheet" href="http://q.hackershrd.com/worksheet/css/sub.css" /><!-- sub페이지에만 호출 -->
 <link type="text/css" rel="stylesheet" href="http://q.hackershrd.com/worksheet/css/login.css" /><!-- login페이지에만 호출 -->
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
 <script type="text/javascript" src="http://q.hackershrd.com/worksheet/js/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="http://q.hackershrd.com/worksheet/js/plugins/bxslider/jquery.bxslider.min.js"></script>
@@ -168,7 +169,9 @@
                                                      document.getElementById('logout-form').submit();">로그아웃</a>
 
                         <a href="{{ route('userInfo',Auth::user()->id) }}">{{ Auth::user()->name }} 정보</a>
-                        <a href="#">상담/고객센터</a>
+                        @if(Auth::User() -> level == 0)
+                        <a href="/lecture">강의실</a>
+                        @endif
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
                         </form>

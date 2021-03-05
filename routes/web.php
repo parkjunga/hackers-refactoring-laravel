@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MailSendController;
 use App\Http\Controllers\member\MemberController;
-use App\Http\Controllers\LectureController;
+use App\Http\Controllers\lecture\LectureController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +30,7 @@ Auth::routes(['verify' => true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 //Route::resource('member', MemberController::class);
-//Route::resource('lecture', LectureController::class);
+Route::resource('lecture', LectureController::class)->middleware('lv2');
 Route::get('/member/step01', [MemberController::class, 'step01'])->name('step01');
 Route::post('/member/step01',[MemberController::class, 'step01Confirm']);
 Route::get('/member/step02', [MemberController::class, 'step02']);

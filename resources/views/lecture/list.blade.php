@@ -1,16 +1,5 @@
-@extends('layouts.master')
-
-@section('content')
-<div id="container" class="container">
-	<div id="nav-left" class="nav-left">
-		<div class="nav-left-tit"> 
-			<span>일반직무</span>
-		</div>
-		<ul class="nav-left-lst">
-			<li><a href="#">경제일반</a></li>
-		</ul>
-	</div>
-
+@extends('layouts.lectureTemplate')
+@section('lecture')
 	<div id="content" class="content">
 		<div class="tit-box-h3">
 			<h3 class="tit-h3">경제일반</h3>
@@ -53,7 +42,7 @@
                                 <span class="input-txt">초급</span>
                             </label>
                         </li>
-                        
+12
                 </ul>
             </li>
         </ul>
@@ -76,18 +65,19 @@
     </colgroup>
 
     <tbody>
-    {}
     <!--  강의 리스트 START-->
     @foreach($lecture as $lec)
+
             <tr>
             <td>
+                <input type="hidden" name="id" value="{{ $lec->id }}">
                 <div class="sample-lecture">
-                    <img src="." width="144" height="101" alt="">
+                    <img src="{{ $lec->file_path }}" width="144" height="101" alt="">
                      <span class="tc-brand" style="cursor:pointer" onclick="view_save('Y16M090041', 1,'','01::refu>4>B001>M002','go_sample')">샘플강의 ▶</span>
                 </div>
             </td>
             <td class="sbj">
-                <em class="tit"><a href="./lecture.php?mode=lecView&amp;pcate=cateF&amp;scate=F002&amp;product_key=01::refu>4>B001>M002&amp;p_id=&amp;s_id=Y16M090041">{{ $lec->title}}</a></em>
+                <em class="tit"><a href="{{ $lec->file_name }}">{{ $lec->title}}</a></em>
                 <p class="tc-gray mt10">{{ $lec->summary }}</p>
             </td>
             <td>
@@ -113,19 +103,26 @@
             <!--  강의 리스트 END-->
     </tbody>
 </table>
-		</table>
-        {{ $lecture->links() }}
+
 		<div class="box-paging">
-			<a href="#"><i class="icon-first"><span class="hidden">첫페이지</span></i></a>
-			<a href="#"><i class="icon-prev"><span class="hidden">이전페이지</span></i></a>
-			<a href="#" class="active">1</a>
-			<a href="#">2</a>
-			<a href="#">3</a>
-			<a href="#">4</a>
-			<a href="#">5</a>
-			<a href="#">6</a>
-			<a href="#"><i class="icon-next"><span class="hidden">다음페이지</span></i></a>
-			<a href="#"><i class="icon-last"><span class="hidden">마지막페이지</span></i></a>
+            <a href = "/lecture?pageNum={{ $startPage }}"><<</a>
+            <?php if ($pageNum == 1) { echo ""; }
+                else { ?>
+            <a href = "/lecture?page={{ $pageNum-1 }}"><</a>
+            <?php } ?>
+            <?php for($i=$startPage; $i<=$endPage; $i++)
+            { ?>
+            <a href = "/lecture?page=<?= $i ?>"><?= $i ?></a>
+            <?php } ?>
+            <?php if($pageNum == $totalPage)
+            {
+                echo "";
+            }
+            else
+            { ?>
+            <a href = "/tasks?page={{ $pageNum+1 }}">></a>
+            <?php } ?>
+            <a href = "/tasks?page={{ $endPage }}">>></a><br>
 		</div>
 
 		<div class="box-btn t-r">
