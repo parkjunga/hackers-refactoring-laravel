@@ -1,54 +1,19 @@
 
-## About Laravel
+## hackers-refactoring-laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### 기획의도 
+본 프로젝트를 진행하게 된 이유는 라라벨 프레임워크를 사용해서 개발을 해봄으로써 프레임워크 사용의 익숙함을 길러보자는 의도로 진행하였다.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### 리팩토링  
+기존에 진행했던 해커스 어학원 과제 (https://github.com/parkjunga/hackers) 를 프레임워크를 사용해서 개발하였다.
+jquery -> javascript es6 를 사용해서 좀 더 성능적으로도 나은 사이를 만들어 보고자하였다. 
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+제공하는 기능은 
+- 회원가입
+- 로그인 
+- 아이디찾기 (이메일 찾기)
+- 게시판 CRUD
 
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 아쉬운점
+DB 모델링을 새로하지는 않아 DB 테이블간에 설계측면이 아쉽다. 또한 라라벨에 대해 완변학 이해를 위해서는 라라벨에서 제공하는 API에 대해서도 조금 더 공부할 필요할 것으로 보인다.
+또한 비즈니스 로직 분리가 크게 되지 않아 그 부분에 대해서도 리팩토링이 필요할 것으로 보인다. 
